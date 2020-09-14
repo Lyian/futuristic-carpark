@@ -1,4 +1,6 @@
-package energy.uniper.FP;
+package energy.uniper.FP
+
+import energy.uniper.FP.util.CarFactory
 
 /**
  * Wir befinden uns im Jahr 2040, futuristische Parkhäuser haben die oberhand gegenüber normalen Parkhäuser übernommen,
@@ -42,9 +44,8 @@ package energy.uniper.FP;
  */
 
 
-public class Main {
+fun main(args: Array<String>) {
+    val factory = CarFactory()
+    val listOfCars = factory.createNewCar()
 
-    public static void main(String[] args) {
-	// write your code here
-    }
 }
