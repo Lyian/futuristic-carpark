@@ -1,6 +1,11 @@
 package energy.uniper.FP
 
+import energy.uniper.FP.model.CarStatus
+import energy.uniper.FP.model.Parkebene
+import energy.uniper.FP.model.Parkhaus
+import energy.uniper.FP.model.Parkplatz
 import energy.uniper.FP.util.CarFactory
+import kotlin.random.Random
 
 /**
  * Wir befinden uns im Jahr 2040, futuristische Parkhäuser haben die oberhand gegenüber normalen Parkhäuser übernommen,
@@ -47,5 +52,42 @@ import energy.uniper.FP.util.CarFactory
 fun main(args: Array<String>) {
     val factory = CarFactory()
     val listOfCars = factory.createNewCar()
+    val parkhaus1 = Parkhaus()
+
+
+    for (i in 0..10){
+
+        val leereParkplatzListe = mutableListOf<Parkplatz>()
+        for (j in 1..20){
+            leereParkplatzListe.add(Parkplatz(j))
+        }
+
+        parkhaus1.parkebenen.add(Parkebene(i, 20, leereParkplatzListe))
+    }
+
+
+
+    for (car in listOfCars.filter { it.status == CarStatus.WILLREIN }){
+        parkhaus1.parkplatzZuordnen(car)
+    }
+
+
+
+
+    for (car in listOfCars.filter { it.status == CarStatus.PARKPLATZ }){
+
+        val eps = Random.nextInt(0,5)
+        if (eps > 3){
+            car.status = CarStatus.GARAGE
+            parkhaus1.parkplatzAbrechnen(car, parkhaus1.carEbenePlatzList)
+            car.status = CarStatus.ABGEHOLT
+            parkhaus1.carEbenePlatzList.removeAll({ it.kennzeichen == car.kennzeichen})
+        }
+
+    }
+
+
+
+    println("Erfolgreich")
 
 }
