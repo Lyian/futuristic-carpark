@@ -1,6 +1,7 @@
 package energy.uniper.FP.util
 
-import energy.uniper.FP.model.Vehicle
+import energy.uniper.FP.model.Car
+import energy.uniper.FP.model.CarStatus
 import kotlin.random.Random
 
 class CarFactory (){
@@ -15,9 +16,9 @@ class CarFactory (){
 
 
 
-    fun createNewCar(count: Int = 185) : List<Vehicle> {
-        val listOfCar = mutableListOf<Vehicle>()
-        for (i in 0..count){
+    fun createNewCar(count: Int = 50) : List<Car> {
+        val listOfCar = mutableListOf<Car>()
+        for (i in 1..count){
             val combi = this.kennzeichen.random();
             val stadt = städte.random()
             val auto = autoBrand.random()
@@ -32,7 +33,7 @@ class CarFactory (){
                 isP = true
             }
 
-            listOfCar.add(Vehicle(auto, typ.random(), "$stadt $combi $intKennzeichen", "$name2 $name1", costOfCar, isP, false, 0.0, "willRein"))
+            listOfCar.add(Car(auto, typ.random(), "$stadt $combi $intKennzeichen", "$name2 $name1", costOfCar, isP, false, 0.0, CarStatus.willRein))
         }
 
         return listOfCar

@@ -1,6 +1,8 @@
 package energy.uniper.FP
 
+import energy.uniper.FP.model.*
 import energy.uniper.FP.util.CarFactory
+import kotlin.random.Random
 
 /**
  * Wir befinden uns im Jahr 2040, futuristische Parkhäuser haben die oberhand gegenüber normalen Parkhäuser übernommen,
@@ -47,5 +49,42 @@ import energy.uniper.FP.util.CarFactory
 fun main(args: Array<String>) {
     val factory = CarFactory()
     val listOfCars = factory.createNewCar()
+    val parkhaus = Parkhaus()
 
+
+// Parkplätze zuordnen
+    val anzahlAutos =listOfCars.count()
+    for (x in 0..anzahlAutos-1) {
+        parkhaus.parklatzZuordnen(listOfCars[x])
+    }
+
+
+// Autos zum Abholen in der Garage fahren
+    for (y in 0..40) {
+        parkhaus.carAusparken(listOfCars[Random.nextInt(0, anzahlAutos-1)])
+    }
+    val list = listOfCars.filter { it.status == CarStatus.Garage }
+   for (x in listOfCars){
+        println("  ${x.kennzeichen} ${x.status}" )
+    }
+
+// Autos bezahlen und mitnehmen
+
+    val autosInGargage = listOfCars.filter { it.status == CarStatus.Garage }
+    for (z in 0..autosInGargage.count()-1) {
+        parkhaus.parkplatzAbrechnen(autosInGargage[z])
+        val list = listOfCars.filter { it.status == CarStatus.Abgeholt }
+        for (x in list){
+            println("  ${x.kennzeichen} ${x.preis}")
+        }
+    }
+
+
+/*
+      val sortedList = parkhaus.carEbenePlatz.sortedWith(compareBy({ it.parkebeneId }, { it.parkplatzId }))
+       for (x in sortedList){
+            println(" ${x.parkebeneId} ${x.parkplatzId} ${x.kennzeichen}" )
+        }
+
+*/
 }

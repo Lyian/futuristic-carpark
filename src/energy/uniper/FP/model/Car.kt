@@ -1,6 +1,6 @@
 package energy.uniper.FP.model
 
-data class Vehicle(
+data class Car(
         val marke: String,
         val typ: String,
         val kennzeichen: String,
@@ -8,8 +8,8 @@ data class Vehicle(
         val wert: Double,
         val parteipersönlichkeit: Boolean,
         var kontrolle: Boolean,
-        val preis: Double,
-        var status: String,
+        var preis: Double,
+        var status: CarStatus,
         ){
 
 }
