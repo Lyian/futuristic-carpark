@@ -1,5 +1,6 @@
 package energy.uniper.FP
 
+import energy.uniper.FP.model.CarPark
 import energy.uniper.FP.util.CarFactory
 
 /**
@@ -43,9 +44,27 @@ import energy.uniper.FP.util.CarFactory
  * Nachdem die Miliz diese brisanten Informationen gesehen hat, bleibt ihnen nichts anderes übrig, als die Idee zu verwerfen und die Regierung zu stürzen....
  */
 
+/**
+ * Wir führen weitere Parkhäuser hinzu. Jedes Parkhaus kann maximal 200 Autos enthalten und falls ein
+ * neues Auto hinzukommt, wird ein Auto in das nächste Parkhaus verschoben.
+ * Falls ein Auto verschoben wird, wird der Preis um 1€ erhöht. Nur Autos für die Ebenen 0-4 kommen für das verschieben
+ * in Frage.
+ *
+ * Die Parkhäuser dürfen nun von bestimmten, ausgewählten Personen betreten werden. Entweder von Mitarbeiter (Watungsarbeiter/ Secruity)
+ * oder von Parteimitgliedern, die zu ihren Autos wollen. Beim betreten des Parkhauses werden diese Infomationen abgefragt, wobei die Parteimitglieder
+ * nur zu dem Auto dürfen, das ihres ist.
+ * Da das betreten des Parkhauses mit Sicherheitsrisiken verbunden ist, wird pauschal für das betreten 2 Taler berechnet.
+ */
 
 fun main(args: Array<String>) {
     val factory = CarFactory()
-    val listOfCars = factory.createNewCar()
+    val listOfCars = factory.createNewCar(250)
 
+    val carPark = CarPark(10)
+
+    for (car in listOfCars){
+        carPark.parkCar(car)
+    }
+
+    carPark.carLeaving(listOfCars[17])
 }
