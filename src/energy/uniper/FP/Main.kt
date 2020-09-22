@@ -56,16 +56,10 @@ fun main(args: Array<String>) {
     val anzahlAutos =listOfCars.count()
     for (x in 0..anzahlAutos-1) {
         parkhaus.parklatzZuordnen(listOfCars[x])
-    }
+        if(listOfCars[x].status == CarStatus.Abgewiesen){
+             println(  listOfCars[x].kennzeichen)
+        }
 
-
-// Autos zum Abholen in der Garage fahren
-    for (y in 0..40) {
-        parkhaus.carAusparken(listOfCars[Random.nextInt(0, anzahlAutos-1)])
-    }
-    val list = listOfCars.filter { it.status == CarStatus.Garage }
-   for (x in listOfCars){
-        println("  ${x.kennzeichen} ${x.status}" )
     }
 
 // Autos bezahlen und mitnehmen
@@ -78,13 +72,4 @@ fun main(args: Array<String>) {
             println("  ${x.kennzeichen} ${x.preis}")
         }
     }
-
-
-/*
-      val sortedList = parkhaus.carEbenePlatz.sortedWith(compareBy({ it.parkebeneId }, { it.parkplatzId }))
-       for (x in sortedList){
-            println(" ${x.parkebeneId} ${x.parkplatzId} ${x.kennzeichen}" )
-        }
-
-*/
 }

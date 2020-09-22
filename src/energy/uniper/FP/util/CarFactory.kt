@@ -16,7 +16,7 @@ class CarFactory (){
 
 
 
-    fun createNewCar(count: Int = 50) : List<Car> {
+    fun createNewCar(count: Int = 250) : List<Car> {
         val listOfCar = mutableListOf<Car>()
         for (i in 1..count){
             val combi = this.kennzeichen.random();
